@@ -1,0 +1,42 @@
+[project]
+name = "pymcp-template"
+version = "0.1.2"
+description = "A template (repository) for developing MCP servers in Python"
+readme = "README.md"
+authors = [
+    { name = "Anirban Basu", email = "anirbanbasu@users.noreply.github.com" }
+]
+keywords = ["python3", "example", "server", "model-context-protocol-server", "mcp-server"]
+requires-python = ">=3.12"
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.12",
+]
+dependencies = [
+    "fastmcp>=2.9.2",
+]
+
+[project.scripts]
+pymcp = "pymcp.server:main"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/pymcp"]
+
+[tool.uv.sources]
+fastmcp = { git = "https://github.com/jlowin/fastmcp.git" }
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[dependency-groups]
+dev = [
+    "pre-commit>=4.2.0",
+]
+test = [
+    "coverage>=7.9.1",
+    "pytest>=8.4.1",
+]
